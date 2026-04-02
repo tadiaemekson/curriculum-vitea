@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }} | Emekson{% endblock %}
+
+{% block body %}
+<section class="project-detail">
+    <a href="{{ path('app_projects') }}" class="project-detail__back">← Back to projects</a>
+
+    <header class="project-detail__header">
+        <h1>{{ project.title }}</h1>
+        <p class="project-stack">{{ project.techStack }}</p>
+    </header>
+
+    <div class="project-detail__body">
+        <p>{{ project.description }}</p>
+    </div>
+
+    <div class="project-detail__links">
+        {% if project.githubUrl %}
+        <a href="{{ project.githubUrl }}" class="btn btn-outline" target="_blank" rel="noopener noreferrer">View Source</a>
+        {% endif %}
+        {% if project.liveUrl %}
+        <a href="{{ project.liveUrl }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open Live Project</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

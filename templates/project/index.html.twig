@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects | Emekson{% endblock %}
+
+{% block body %}
+<section class="page-header">
+    <p class="page-header__eyebrow">Portfolio</p>
+    <h1 class="page-header__title">All Projects</h1>
+    <p class="page-header__subtitle">
+        A complete list of my recent work, tools used, and links to source code and live demos.
+    </p>
+</section>
+
+<section class="projects-page">
+    <div class="projects-grid">
+        {% for project in projects %}
+        <article class="project-card">
+            <div class="project-card__header">
+                <h2>{{ project.title }}</h2>
+                <span class="project-stack">{{ project.techStack }}</span>
+            </div>
+            <p>{{ project.description|slice(0, 180) }}{% if project.description|length > 180 %}...{% endif %}</p>
+            <div class="project-card__links">
+                {% if project.githubUrl %}
+                <a href="{{ project.githubUrl }}" target="_blank" rel="noopener noreferrer">GitHub →</a>
+                {% endif %}
+                {% if project.liveUrl %}
+                <a href="{{ project.liveUrl }}" target="_blank" rel="noopener noreferrer">Live →</a>
+                {% endif %}
+                <a href="{{ path('app_project_show', { id: project.id }) }}">Details →</a>
+            </div>
+        </article>
+        {% else %}
+        <p class="empty-state">No projects yet. Add one from the database to display it here.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

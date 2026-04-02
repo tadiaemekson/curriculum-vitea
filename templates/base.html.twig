@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ path('app_home') }}" class="nav-logo">EMEKSON</a>
+        <div class="nav-actions">
+            <ul class="nav-links">
+                <li><a href="{{ path('app_home') }}">Home</a></li>
+                <li><a href="{{ path('app_projects') }}">Projects</a></li>
+                <li><a href="{{ path('app_home') }}#contact">Contact</a></li>
+            </ul>
+            <button
+                type="button"
+                class="theme-toggle"
+                id="theme-toggle"
+                aria-label="Toggle dark and light theme"
+            >
+                <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+                <span class="theme-toggle__text">Night</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Built with Symfony 7 &amp; ❤️ by Emekson</p>
+    </footer>
+    <script src="{{ asset('js/theme.js') }}"></script>
+</body>
+</html>

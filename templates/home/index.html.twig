@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emekson | Full Stack Developer{% endblock %}
+
+{% block body %}
+
+{# HERO SECTION #}
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">TADIA FONGE EMEKSON</h1>
+        <p class="hero-role">Full Stack Developer</p>
+        <p class="hero-description">
+            Computer Technology student specializing in Full Stack development.
+            I build web applications with PHP, Symfony and MySQL.
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ path('app_projects') }}" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+    </div>
+    <div class="hero-badge">
+        <span>PHP</span>
+        <span>Symfony</span>
+        <span>MySQL</span>
+        <span>Full Stack</span>
+    </div>
+</section>
+
+{# SKILLS SECTION #}
+<section class="skills" id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+        {% for skill in skills %}
+        <div class="skill-card">
+            <span class="skill-category">{{ skill.category }}</span>
+            <h3>{{ skill.name }}</h3>
+            <span class="skill-level skill-level--{{ skill.level|lower }}">{{ skill.level }}</span>
+        </div>
+        {% else %}
+        <p class="empty-state">Skills coming soon...</p>
+        {% endfor %}
+    </div>
+</section>
+
+{# PROJECTS SECTION #}
+<section class="projects-preview" id="projects">
+    <h2 class="section-title">Recent Projects</h2>
+    <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-card__header">
+                <h3>{{ project.title }}</h3>
+                <span class="project-stack">{{ project.techStack }}</span>
+            </div>
+            <p>{{ project.description|slice(0, 120) }}...</p>
+            <div class="project-card__links">
+                {% if project.githubUrl %}
+                <a href="{{ project.githubUrl }}" target="_blank" rel="noopener noreferrer">GitHub →</a>
+                {% endif %}
+                {% if project.liveUrl %}
+                <a href="{{ project.liveUrl }}" target="_blank" rel="noopener noreferrer">Live →</a>
+                {% endif %}
+                <a href="{{ path('app_project_show', {id: project.id}) }}">Details →</a>
+            </div>
+        </div>
+        {% else %}
+        <p class="empty-state">Projects coming soon...</p>
+        {% endfor %}
+    </div>
+    <div class="center">
+        <a href="{{ path('app_projects') }}" class="btn btn-outline">View All Projects</a>
+    </div>
+</section>
+
+{# CONTACT SECTION #}
+<section class="contact" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <p>I'm open to internship opportunities and collaborations.</p>
+
+    {% for message in app.flashes('success') %}
+    <div class="flash flash-success">{{ message }}</div>
+    {% endfor %}
+
+    {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
+        <div class="contact-form__row">
+            <div class="contact-form__field">
+                {{ form_label(contactForm.name) }}
+                {{ form_widget(contactForm.name) }}
+                {{ form_errors(contactForm.name) }}
+            </div>
+            <div class="contact-form__field">
+                {{ form_label(contactForm.email) }}
+                {{ form_widget(contactForm.email) }}
+                {{ form_errors(contactForm.email) }}
+            </div>
+        </div>
+        <div class="contact-form__field">
+            {{ form_label(contactForm.message) }}
+            {{ form_widget(contactForm.message) }}
+            {{ form_errors(contactForm.message) }}
+        </div>
+        <div class="contact-form__actions">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+    {{ form_end(contactForm) }}
+</section>
+
+{% endblock %}
