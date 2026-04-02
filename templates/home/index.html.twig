@@ -6,17 +6,30 @@
 
 {# HERO SECTION #}
 <section class="hero">
-    <div class="hero-content">
-        <p class="hero-greeting">Hello, I'm</p>
-        <h1 class="hero-name">TADIA FONGE EMEKSON</h1>
-        <p class="hero-role">Full Stack Developer</p>
-        <p class="hero-description">
-            Computer Technology student specializing in Full Stack development.
-            I build web applications with PHP, Symfony and MySQL.
-        </p>
-        <div class="hero-buttons">
-            <a href="{{ path('app_projects') }}" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-outline">Contact Me</a>
+    <div class="hero-inner">
+        <div class="hero-content">
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-name">TADIA FONGE EMEKSON</h1>
+            <p class="hero-role">Full Stack Developer</p>
+            <p class="hero-description">
+                Computer Technology student specializing in Full Stack development.
+                I build web applications with PHP, Symfony and MySQL.
+            </p>
+            <div class="hero-buttons">
+                <a href="{{ path('app_projects') }}" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img
+                src="{{ asset('images/profile.svg') }}"
+                alt="Tadia Fonge Emekson"
+                class="hero-photo__img"
+                width="320"
+                height="320"
+                loading="eager"
+                decoding="async"
+            >
         </div>
     </div>
     <div class="hero-badge">
@@ -77,6 +90,25 @@
 <section class="contact" id="contact">
     <h2 class="section-title">Get In Touch</h2>
     <p>I'm open to internship opportunities and collaborations.</p>
+
+    <div class="contact-details">
+        <p><strong>Full Name:</strong> TADIA FONGE EMEKSON</p>
+        <p>
+            <strong>Phone:</strong>
+            <a href="tel:+237655648766">655-648-766</a>
+            /
+            <a href="tel:+237674725952">674-725-952</a>
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <a href="mailto:tadiaemekson@gmail.com">tadiaemekson@gmail.com</a>
+        </p>
+        <div class="contact-socials">
+            <a href="https://github.com/tadiaemekson" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/tadia-emekson-987734273" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.facebook.com/franklin.emekson/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </div>
+    </div>
 
     {% for message in app.flashes('success') %}
     <div class="flash flash-success">{{ message }}</div>

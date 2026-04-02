@@ -10,7 +10,10 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="{{ path('app_home') }}" class="nav-logo">EMEKSON</a>
+        <a href="{{ path('app_home') }}" class="nav-brand">
+            <img src="{{ asset('images/logo.svg') }}" alt="" class="nav-brand__logo" width="40" height="40">
+            <span class="nav-brand__text">EMEKSON</span>
+        </a>
         <div class="nav-actions">
             <ul class="nav-links">
                 <li><a href="{{ path('app_home') }}">Home</a></li>
