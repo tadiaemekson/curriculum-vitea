@@ -22,7 +22,7 @@
         </div>
         <div class="hero-photo">
             <img
-                src="{{ asset('images/profile.svg') }}"
+                src="{{ asset('images/profile.png') }}"
                 alt="Tadia Fonge Emekson"
                 class="hero-photo__img"
                 width="320"
@@ -113,6 +113,15 @@
     {% for message in app.flashes('success') %}
     <div class="flash flash-success">{{ message }}</div>
     {% endfor %}
+
+    {% set mailtoUrl = app.flashes('mailto_url')|first %}
+    {% if mailtoUrl %}
+    <div class="contact-send-now">
+        <a class="btn btn-primary" href="{{ mailtoUrl|e('html_attr') }}" target="_blank" rel="noopener noreferrer">
+            Send Email Now
+        </a>
+    </div>
+    {% endif %}
 
     {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
         <div class="contact-form__row">

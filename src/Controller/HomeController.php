@@ -25,8 +25,25 @@ class HomeController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            // Placeholder action for now: form is validated and acknowledged.
             $this->addFlash('success', 'Thanks for reaching out. I will get back to you soon.');
+
+            $to = 'tadiaemekson@gmail.com';
+            $subject = sprintf('Portfolio contact from %s', (string) $contactMessage->getName());
+            $body = implode("\n", [
+                'You received a new message from your portfolio contact form:',
+                '',
+                'Name: ' . (string) $contactMessage->getName(),
+                'Email: ' . (string) $contactMessage->getEmail(),
+                '',
+                'Message:',
+                (string) $contactMessage->getMessage(),
+            ]);
+
+            $mailtoUrl = 'mailto:' . $to
+                . '?subject=' . rawurlencode($subject)
+                . '&body=' . rawurlencode($body);
+
+            $this->addFlash('mailto_url', $mailtoUrl);
 
             return new RedirectResponse($this->generateUrl('app_home') . '#contact');
         }
